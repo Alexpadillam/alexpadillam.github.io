@@ -3,26 +3,512 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alejandro Padilla</title>
+    <title>My Website</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+        
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 20%;
-            background-color: #f5f5f5;
+            background-color: #0f0f0f;
+            color: #ffffff;
+            line-height: 1.6;
         }
+        
+        header {
+            background-color: #0a0a0a;
+            color: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #f89500;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #f89500;
+        }
+        
+        .nav-links a.active {
+            border-bottom: 2px solid #f89500;
+            color: #f89500;
+        }
+        
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 7rem 2rem 2rem;
+        }
+        
+        section {
+            display: none;
+            padding: 2rem;
+            background: #1a1a1a;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            margin-bottom: 2rem;
+        }
+        
+        section.active {
+            display: block;
+        }
+        
         h1 {
-            font-size: 3em;
-            color: #333;
+            margin-bottom: 1.5rem;
+            color: #fff;
+            font-size: 2.5rem;
         }
-        h2 {
-            font-size: 1.5em;
+        
+        p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .project-card {
+            background: #252525;
+            border-radius: 5px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(248, 149, 0, 0.2);
+        }
+        
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .project-info {
+            padding: 1.2rem;
+        }
+        
+        .project-info h3 {
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+        
+        .project-info p {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        .project-info .year {
+            color: #f89500;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        
+        /* About section styles */
+        .about-content {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 5px;
+        }
+        
+        .about-text {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .about-text h2 {
+            color: #f89500;
+            margin-bottom: 1rem;
+        }
+        
+        /* Contact form styles */
+        .contact-form {
+            max-width: 600px;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #f89500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            background: #252525;
+            border: 1px solid #333;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 1rem;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #f89500;
+            box-shadow: 0 0 0 2px rgba(248, 149, 0, 0.1);
+        }
+        
+        .submit-btn {
+            background-color: #f89500;
+            color: #0f0f0f;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            background-color: #ffaa30;
+            transform: translateY(-2px);
+        }
+        
+        .contact-info {
+            margin-top: 2rem;
+            border-top: 1px solid #333;
+            padding-top: 2rem;
+        }
+        
+        .contact-info h3 {
+            color: #f89500;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-info p {
+            margin-bottom: 0.5rem;
+        }
+        
+        .contact-info a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-info a:hover {
+            color: #f89500;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: #0a0a0a;
             color: #666;
+            margin-top: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: #0a0a0a;
+                padding: 1rem 0;
+                text-align: center;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 0.5rem 0;
+            }
+            
+            .hamburger {
+                display: block;
+                cursor: pointer;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            section {
+                padding: 1.5rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+        }
+        
+        @media (min-width: 769px) {
+            .hamburger {
+                display: none;
+            }
+        }
+        
+        /* Mobile menu toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 2px 0;
+            transition: all 0.3s ease;
+        }
+        
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Alejandro Padilla</h1>
-    <h2>Portfolio</h2>
+    <header>
+        <nav>
+            <div class="logo">My Portfolio</div>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="active" onclick="openTab('home', this)">Home</a></li>
+                <li><a href="#projects" onclick="openTab('projects', this)">Projects</a></li>
+                <li><a href="#about" onclick="openTab('about', this)">About</a></li>
+                <li><a href="#contact" onclick="openTab('contact', this)">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section id="home" class="active">
+            <h1>Welcome to My Portfolio</h1>
+            <p>Hello! I'm a creative professional passionate about design and development. Explore my work using the navigation tabs above.</p>
+            <p>This portfolio showcases my projects and skills, giving you a glimpse into my creative process and expertise.</p>
+            
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img src="/api/placeholder/400/200" alt="Featured Project" class="project-image">
+                    <div class="project-info">
+                        <h3>Featured Project</h3>
+                        <p>A brief description of this featured project and the technologies used.</p>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <img src="/api/placeholder/400/200" alt="Recent Work" class="project-image">
+                    <div class="project-info">
+                        <h3>Recent Work</h3>
+                        <p>Details about a recent project that demonstrates your skills.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="projects">
+            <h1>My Projects</h1>
+            <p>Here are some projects I've been working on:</p>
+            
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img src="/api/placeholder/400/200" alt="Project 1" class="project-image">
+                    <div class="project-info">
+                        <h3>Project 1</h3>
+                        <p>Description of your first project goes here. Talk about the technologies used and what you learned.</p>
+                        <div class="year">2024</div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <img src="/api/placeholder/400/200" alt="Project 2" class="project-image">
+                    <div class="project-info">
+                        <h3>Project 2</h3>
+                        <p>Description of your second project goes here. Talk about the technologies used and what you learned.</p>
+                        <div class="year">2024</div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <img src="/api/placeholder/400/200" alt="Project 3" class="project-image">
+                    <div class="project-info">
+                        <h3>Project 3</h3>
+                        <p>Description of your third project goes here. Talk about the technologies used and what you learned.</p>
+                        <div class="year">2023</div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <img src="/api/placeholder/400/200" alt="Project 4" class="project-image">
+                    <div class="project-info">
+                        <h3>Project 4</h3>
+                        <p>Description of your fourth project goes here. Talk about the technologies used and what you learned.</p>
+                        <div class="year">2023</div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <img src="/api/placeholder/400/200" alt="Project 5" class="project-image">
+                    <div class="project-info">
+                        <h3>Project 5</h3>
+                        <p>Description of your fifth project goes here. Talk about the technologies used and what you learned.</p>
+                        <div class="year">2022</div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <img src="/api/placeholder/400/200" alt="Project 6" class="project-image">
+                    <div class="project-info">
+                        <h3>Project 6</h3>
+                        <p>Description of your sixth project goes here. Talk about the technologies used and what you learned.</p>
+                        <div class="year">2022</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="about">
+            <h1>About Me</h1>
+            
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="/api/placeholder/400/500" alt="Profile Photo">
+                </div>
+                
+                <div class="about-text">
+                    <h2>Creative Professional</h2>
+                    <p>Hi there! I'm a passionate designer and developer with expertise in creating beautiful and functional digital experiences.</p>
+                    <p>I specialize in web design, graphic design, and front-end development. My approach combines creativity with technical expertise to deliver projects that not only look great but also provide exceptional user experiences.</p>
+                    <p>With several years of experience in the industry, I've had the opportunity to work on diverse projects ranging from brand identities to complex web applications. Each project has contributed to my growth as a professional and has shaped my design philosophy.</p>
+                    <p>When I'm not designing or coding, you'll find me exploring new design trends, experimenting with new technologies, or seeking inspiration from art, nature, and everyday life.</p>
+                    <p>I'm always open to new opportunities and collaborations. If you have a project in mind or just want to connect, feel free to reach out through the contact form.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="contact">
+            <h1>Contact Me</h1>
+            <p>Have a question or want to work together? Fill out the form below:</p>
+            
+            <div class="contact-form">
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+                
+                <div class="contact-info">
+                    <h3>Other Ways to Connect</h3>
+                    <p><strong>Email:</strong> <a href="mailto:your.email@example.com">your.email@example.com</a></p>
+                    <p><strong>LinkedIn:</strong> <a href="#" target="_blank">linkedin.com/in/yourprofile</a></p>
+                    <p><strong>GitHub:</strong> <a href="#" target="_blank">github.com/yourusername</a></p>
+                    <p><strong>Behance:</strong> <a href="#" target="_blank">behance.net/yourprofile</a></p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 My Portfolio. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        function openTab(tabId, element) {
+            // Hide all sections
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active class from all nav links
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Show the selected section
+            document.getElementById(tabId).classList.add('active');
+            
+            // Add active class to the clicked nav link
+            element.classList.add('active');
+            
+            // Close mobile menu if open
+            document.querySelector('.nav-links').classList.remove('active');
+        }
+        
+        function toggleMenu() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
