@@ -39,7 +39,7 @@
         .logo {
             font-size: 1.5rem;
             font-weight: bold;
-            color: #f89500;
+            color: #FF5050; 
         }
         
         .nav-links {
@@ -60,12 +60,26 @@
         }
         
         .nav-links a:hover {
-            color: #f89500;
+            color: #FF5050;
         }
         
         .nav-links a.active {
-            border-bottom: 2px solid #f89500;
-            color: #f89500;
+            border-bottom: 2px solid #FF5050;
+            color: #FF5050;
+        }
+        
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 2px 0;
+            transition: all 0.3s ease;
         }
         
         main {
@@ -98,6 +112,60 @@
             font-size: 1.1rem;
         }
         
+        .hero-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(to right, rgba(10, 10, 10, 0.8), rgba(15, 15, 15, 0.6));
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-content {
+            flex: 1;
+            padding: 3rem;
+            min-width: 300px;
+        }
+
+        .hero-image {
+            flex: 1;
+            min-width: 300px;
+            height: 450px;
+            overflow: hidden;
+        }
+
+        .hero-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .hero-image:hover .hero-img {
+            transform: scale(1.05);
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #FF5050;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-text {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: #ccc;
+        }
+        
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -110,16 +178,17 @@
             border-radius: 5px;
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
         }
         
         .project-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(248, 149, 0, 0.2);
+            box-shadow: 0 5px 15px rgba(255,55,55,0.25);
         }
         
         .project-image {
     width: 100%;
-    height: 250px;
+    height: 300px;
     object-fit: cover;
         }
         
@@ -138,12 +207,86 @@
         }
         
         .project-info .year {
-            color: #f89500;
+            color: #FF5050;
             font-size: 0.9rem;
             margin-top: 0.5rem;
         }
         
-        /* About section styles */
+        .project-detail {
+            display: none;
+        }
+        
+        .project-detail.active {
+            display: block;
+        }
+        
+        .project-detail-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .back-button {
+            background-color: #FF5050;
+            color: #0f0f0f;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-right: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background-color: #FF7F7F;
+        }
+        
+        .project-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .gallery-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-image:hover {
+            transform: scale(1.03);
+        }
+        
+        .project-description {
+            margin: 2rem 0;
+        }
+        
+        .project-meta {
+            background: #252525;
+            padding: 1.5rem;
+            border-radius: 5px;
+            margin-top: 2rem;
+        }
+        
+        .project-meta h3 {
+            color: #FF5050;
+            margin-bottom: 1rem;
+        }
+        
+        .meta-item {
+            margin-bottom: 0.8rem;
+        }
+        
+        .meta-item strong {
+            color: #fff;
+            margin-right: 0.5rem;
+        }
+        
         .about-content {
             display: flex;
             gap: 2rem;
@@ -167,68 +310,73 @@
         }
         
         .about-text h2 {
-            color: #f89500;
+            color: #FF5050;
             margin-bottom: 1rem;
         }
         
-        /* Contact form styles */
-        .contact-form {
-            max-width: 600px;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #f89500;
-        }
-        
-        .form-group input,
-        .form-group textarea {
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
             width: 100%;
-            padding: 0.8rem;
-            background: #252525;
-            border: 1px solid #333;
-            border-radius: 4px;
-            color: #fff;
-            font-size: 1rem;
-        }
-        
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #f89500;
-            box-shadow: 0 0 0 2px rgba(248, 149, 0, 0.1);
-        }
-        
-        .submit-btn {
-            background-color: #f89500;
-            color: #0f0f0f;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 4px;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            justify-content: center;
+            align-items: center;
             cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
         }
-        
-        .submit-btn:hover {
-            background-color: #ffaa30;
-            transform: translateY(-2px);
+
+        .lightbox.active {
+            display: flex;
         }
-        
-        .contact-info {
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            animation: lightbox-fade-in 0.3s ease;
+            position: relative;
+        }
+
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: #fff;
+            font-size: 30px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .close-lightbox:hover {
+            opacity: 1;
+        }
+
+        @keyframes lightbox-fade-in {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+		  .contact-info {
             margin-top: 2rem;
             border-top: 1px solid #333;
             padding-top: 2rem;
         }
         
         .contact-info h3 {
-            color: #f89500;
-            margin-bottom: 1rem;
+    color: #FF5050;
+    margin-bottom: 1rem;
         }
         
         .contact-info p {
@@ -242,7 +390,7 @@
         }
         
         .contact-info a:hover {
-            color: #f89500;
+   			 color: #FF5050;
         }
         
         footer {
@@ -254,6 +402,10 @@
         }
         
         @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+            
             .nav-links {
                 display: none;
                 flex-direction: column;
@@ -274,11 +426,6 @@
                 margin: 0.5rem 0;
             }
             
-            .hamburger {
-                display: block;
-                cursor: pointer;
-            }
-            
             .projects-grid {
                 grid-template-columns: 1fr;
             }
@@ -290,38 +437,20 @@
             .about-content {
                 flex-direction: column;
             }
-        }
-        
-        @media (min-width: 769px) {
-            .hamburger {
-                display: none;
+            
+            .project-detail-header {
+                flex-direction: column;
+                align-items: flex-start;
             }
-        }
-        
-        /* Mobile menu toggle */
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-        }
-        
-        .menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background: white;
-            margin: 2px 0;
-            transition: all 0.3s ease;
-        }
-        
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: flex;
+            
+            .back-button {
+                margin-bottom: 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <header>
+<header>
         <nav>
             <div class="logo">Alejandro Padilla</div>
             <div class="menu-toggle" onclick="toggleMenu()">
@@ -331,183 +460,493 @@
             </div>
             <ul class="nav-links">
                 <li><a href="#home" class="active" onclick="openTab('home', this)">Home</a></li>
-                <li><a href="#projects" onclick="openTab('projects', this)">Projects</a></li>
                 <li><a href="#about" onclick="openTab('about', this)">About</a></li>
-                <li><a href="#contact" onclick="openTab('contact', this)">Contact</a></li>
             </ul>
         </nav>
     </header>
     
     <main>
         <section id="home" class="active">
-            <h1>Welcome to My Portfolio</h1>
-            <p>Hello! I'm a creative professional passionate about design and development. Explore my work using the navigation tabs above.</p>
-            <p>This portfolio showcases my projects and skills, giving you a glimpse into my creative process and expertise.</p>
             
             <div class="projects-grid">
-                <div class="project-card">
-                    <img src="Images/Banner2.png" alt="Featured Project" class="project-image">
-                    <div class="project-info">
-                        <h3>Featured Project - Ligneous</h3>
-                        <p>A realistic wooden head sculpted and rendered in Blender.</p>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <img src="Images/Justice2.jpg" alt="Recent Work" class="project-image">
-                    <div class="project-info">
-                        <h3>Recent Work - Justice</h3>
-                        <p>A black and white illustration of the justice tarot card created for linoleum printing.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section id="projects">
-            <h1>My Projects</h1>
-            
-            <div class="projects-grid">
-                <div class="project-card">
-                    <img src="Images/ABSURD2.jpg" alt="Project 1" class="project-image">
+                <div class="project-card" onclick="openProjectDetail('project-absurd')">
+                    <img src="Images/ABSURDCard.png" alt="Project 1" class="project-image">
                     <div class="project-info">
                         <h3>ABSURD</h3>
-                        <p>A concept magazine based around absurd fictional news stories. All images are original and intervened using Blender, Photoshop, and Illustrator.</p>
+                        <p>A concept magazine based around absurd fictional news stories.</p>
                         <div class="year">2024</div>
                     </div>
                 </div>
                 
-                <div class="project-card">
-                    <img src="Images/Gashadokuro2.png" alt="Project 2" class="project-image">
+                <div class="project-card" onclick="openProjectDetail('project-gashadokuro')">
+                    <img src="Images/GashadokuroCard.png" alt="Project 2" class="project-image">
                     <div class="project-info">
                         <h3>Gashadokuro</h3>
-                        <p>An illustration based on the Japanese yokai the "Gashadokuro" created for an exhibition based around Japanese culture.</p>
+                        <p>An illustration based on the Japanese yokai the "Gashadokuro".</p>
                         <div class="year">2024</div>
                     </div>
                 </div>
-                
-                <div class="project-card">
-                    <img src="Images/Alien.png" alt="Project 3" class="project-image">
+				
+                <div class="project-card" onclick="openProjectDetail('project-ligneous')">
+                    <img src="Images/LigneousCard.png" alt="Project 3" class="project-image">
                     <div class="project-info">
-                        <h3>Alien Sculpts</h3>
-                        <p>A series of original alien busts as sculpting practice in Blender 3D.</p>
+                        <h3>Ligneous</h3>
+                        <p>A series of renders of a realistic fragmented wooden head.</p>
+                        <div class="year">2023</div>
+                    </div>
+                </div>
+
+              <div class="project-card" onclick="openProjectDetail('project-alien')">
+                    <img src="Images/AlienCard.png" alt="Project 4" class="project-image">
+                    <div class="project-info">
+                        <h3>Alien Sculpt</h3>
+                        <p>An original alien bust as sculpting practice in Blender.</p>
                         <div class="year">2023</div>
                     </div>
                 </div>
                 
-                <div class="project-card">
-                    <img src="Images/GVBeowulf2.jpg" alt="Project 4" class="project-image">
+                <div class="project-card" onclick="openProjectDetail('project-book')">
+                    <img src="Images/PictureBookCard.png" alt="Project 5" class="project-image">
+                    <div class="project-info">
+                        <h3>Under the Same Stars</h3>
+                        <p>A children's picture book about cultural exchange and acceptance.</p>
+                        <div class="year">2025</div>
+                    </div>
+                </div>
+
+                <div class="project-card" onclick="openProjectDetail('project-beowulf')">
+                    <img src="Images/GVBeowulfCard.png" alt="Project 6" class="project-image">
                     <div class="project-info">
                         <h3>GV Beowulf</h3>
-                        <p>A concept for the 4th version of the helmet "GV Beowulf" belonging to a line of smart helmets.</p>
+                        <p>An advertisement for the concept smart helmet "GV Beowulf".</p>
                         <div class="year">2024</div>
                     </div>
                 </div>
                 
-                <div class="project-card">
-                    <img src="Images/NAUSEA2.jpg" alt="Project 5" class="project-image">
+                <div class="project-card" onclick="openProjectDetail('project-nausea')">
+                    <img src="Images/NAUSEACard.png" alt="Project 7" class="project-image">
                     <div class="project-info">
                         <h3>NAUSEA</h3>
-                        <p>A concept poster for a fictional horror movie NAUSEA, made with Blender 3D and Illustrator.</p>
+                        <p>A concept poster for a fictional horror movie NAUSEA.</p>
                         <div class="year">2024</div>
                     </div>
                 </div>
                 
-                <div class="project-card">
-                    <img src="Images/Rally1_2.png" alt="Project 6" class="project-image">
+				
+				<div class="project-card" onclick="openProjectDetail('project-justice')">
+                    <img src="Images/JusticeCard.png" alt="Project 8" class="project-image">
                     <div class="project-info">
-                        <h3>Rally Photography</h3>
-                        <p>A series high speed photography taken at the 2023 Rally in Leon, Mexico.</p>
-                        <div class="year">2023</div>
+                        <h3>Justice</h3>
+                        <p>A black and white tarot card design for the major arcana "Justice".</p>
+                        <div class="year">2025</div>
                     </div>
                 </div>
+				
+              <div class="project-card" onclick="openProjectDetail('project-pants')">
+                    <img src="Images/PantsCard.png" alt="Project 9" class="project-image">
+                    <div class="project-info">
+                        <h3>Baggy Jeans Concept</h3>
+                        <p>A series of concept renders for a pair of baggy jeans.</p>
+                        <div class="year">2024</div>
+                    </div>
+                </div>
+				
+
             </div>
         </section>
         
         <section id="about">
-            <h1>About Me</h1>
-            
+			
             <div class="about-content">
                 <div class="about-image">
-                    <img src="Images/1e3c7a15-925e-46de-8787-c5033ab83aaf.JPG" alt="Profile Photo">
+                    <img src="Images/Profile.jpg" alt="Profile Photo">
                 </div>
                 
                 <div class="about-text">
-                    <h2>Alejandro Padilla</h2>
-                    <p>Hi there! I'm a passionate designer and developer with expertise in creating beautiful and functional digital experiences.</p>
-                    <p>I specialize in 3D modeling, graphic design, and fashion design. My approach combines creativity with technical expertise to deliver projects that not only look great but also provide exceptional user experiences.</p>
-                    <p>With several years of experience learning and practicing design, I've had the opportunity to work on diverse projects ranging from brand identities to creating a brand new garment with nothing but measurements. Each project has contributed to my growth as a professional and has shaped my design philosophy.</p>
-                    <p>When I'm not designing, you'll find me exploring new design trends, experimenting with new technologies, or seeking inspiration from art, nature, and everyday life.</p>
-                    <p>I'm always open to new opportunities and collaborations. If you have a project in mind or just want to connect, feel free to reach out through the contact form.</p>
-                </div>
+                    <h2>About me</h2>
+                    <p>My name is Alejandro Padilla, and I’m a 21-year-old graphic design student in my final year, based in León, Guanajuato, Mexico.</p>
+					<p>While completing my degree, I’ve built a strong foundation in visual communication, 3D modeling, illustration, and fashion design. Through academic and self-initiated projects, from editorial layouts and posters to designing and sewing garment,&nbsp; I’ve developed a multidisciplinary portfolio that reflects both creative ambition and technical growth.</p>
+					
+					<p>I’m especially drawn to how design can distort, reflect, or reimagine reality. My work often explores this through bold storytelling and narrative-driven concepts, always aiming to create something thoughtful, original, and worth a closer look.</p>
+  					<div class="contact-info">
+                    <h3>Contact</h3>
+                    <p><strong><a href="mailto:alexpadillam1@gmail.com">alexpadillam1@gmail.com</a></strong></p>
+                    <p><strong><a href="https://www.linkedin.com/in/alejandro-padilla-83305934b/" target="_blank">Linkedin</a></strong></p>
+                	</div>			
+				</div>
+			</div>
+
+        </section>
+
+				
+        
+        <section id="project-absurd" class="project-detail">
+            <div class="project-detail-header">
+                <button class="back-button" onclick="goBackToHome()">← Back to Home</button>
+                <h1>ABSURD Magazine</h1>
+            </div>
+            
+            <img src="Images/ABSURD/ABSURD1.png" alt="ABSURD Cover" class="project-image" style="width: 100%; height: auto; max-height: 800px; object-fit: contain;">
+            
+            <div class="project-description">
+              <h2>Project Overview</h2>
+                <p>ABSURD is a concept magazine that features fictional news stories designed to blur the line between reality and imagination. Each article, photograph, and graphic element is meticulously crafted to create an immersive experience that leans into the surreal.</p>
+                
+                <p>The design direction intentionally plays with visual tension, juxtaposing traditional magazine layout conventions with disruptive, unexpected elements that mirror the absurd nature of the content.</p>
+            </div>
+            
+            <div class="project-gallery">
+                <img src="Images/Absurd/Page1.png" alt="Page1" class="gallery-image">
+                <img src="Images/Absurd/Page2.png" alt="Page2" class="gallery-image">
+                <img src="Images/Absurd/Page3.png" alt="Page3" class="gallery-image">
+                <img src="Images/Absurd/Spread1.png" alt="Spread1" class="gallery-image">
+                <img src="Images/Absurd/Spread2.png" alt="Spread2" class="gallery-image">
+                <img src="Images/Absurd/Spread3.png" alt="Spread3" class="gallery-image">
+            </div>
+            
+            <div class="project-meta">
+                <h3>Project Details</h3>
+                <p class="meta-item"><strong>Year:</strong> 2024</p>
+                <p class="meta-item"><strong>Tools Used:</strong> Blender, Adobe Photoshop, Adobe Illustrator, Adobe InDesign</p>
             </div>
         </section>
         
-        <section id="contact">
-            <h1>Contact Me</h1>
-            <p>Have a question or want to work together? Fill out the form below:</p>
+        <section id="project-gashadokuro" class="project-detail">
+            <div class="project-detail-header">
+                <button class="back-button" onclick="goBackToHome()">← Back to Home</button>
+                <h1>Gashadokuro</h1>
+            </div>
             
-            <div class="contact-form">
-                <form id="contact-form">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="5" required></textarea>
-                    </div>
-                    
-                    <button type="submit" class="submit-btn">Send Message</button>
-                </form>
+            <img src="Images/Gashadokuro/Gashadokuro.png" alt="Gashadokuro" class="project-image" style="width: 100%; height: auto; max-height: 800px; object-fit: contain;">
+            
+            <div class="project-description">
+                <h2>Project Overview</h2>
+                <p>This illustration is inspired by the Japanese yokai <i>Gashadokuro</i>,a giant skeleton formed from the bones of those who died from starvation. Created for a student-organized exhibition focused on Japanese culture, the piece blends traditional folklore with contemporary techniques.</p>
                 
-                <div class="contact-info">
-                    <h3>Other Ways to Connect</h3>
-                    <p><strong>Email:</strong> <a href="mailto:your.email@example.com">alexpadillam1@gmail.com</a></p>
-                    <p><strong>LinkedIn:</strong> <a href="#" target="_blank">linkedin.com/in/alejandro-padilla-83305934b</a></p>
-                    <p><strong>GitHub:</strong> <a href="#" target="_blank">github.com/Alexpadillam</a></p>
-                    <p><strong>Behance:</strong> <a href="#" target="_blank">behance.net/alexpadilla7</a></p>
-                </div>
+                <p>The process began with a 3D composition reference, which served as the foundation for digital painting. The final artwork merges stylistic elements of classical Japanese art with modern digital aesthetics, resulting in a piece that feels both timeless and current.</p>
+            </div>
+            
+            <div class="project-gallery">
+                <img src="Images/Gashadokuro/GashadokuroNoOutlines.png" alt="Gashadokuro No Outline" class="gallery-image">
+                <img src="Images/Gashadokuro/Process1.png" alt="Process 1" class="gallery-image">
+                <img src="Images/Gashadokuro/Process2.png" alt="Process 2" class="gallery-image">
+            </div>
+            
+            <div class="project-meta">
+                <h3>Project Details</h3>
+                <p class="meta-item"><strong>Year:</strong> 2024</p>
+                <p class="meta-item"><strong>Tools Used:</strong> Blender, Adobe Photoshop</p>
+            </div>
+        </section>
+        
+        <section id="project-alien" class="project-detail">
+            <div class="project-detail-header">
+                <button class="back-button" onclick="goBackToHome()">← Back to Home</button>
+                <h1>Alien Sculpt</h1>
+            </div>
+            
+            <img src="Images/Alien/Alien.png" alt="Main Alien Bust" class="project-image" style="width: 100%; height: auto; max-height: 800px; object-fit: contain;">
+            
+            <div class="project-description">
+                <h2>Project Overview</h2>
+                <p>This alien bust was sculpted in Blender as part of an exploratory series focused on creature design. The aim was to push the boundaries of humanoid anatomy while refining skills in digital sculpting.</p>
+				
+				<p>Special attention was given to the interplay of organic textures and alien anatomy, creating a form that feels both unfamiliar and oddly believable.</p>
+                
+            </div>
+            
+            <div class="project-gallery">
+                <img src="Images/Alien/AlienClose.png" alt="Main Closeup" class="gallery-image">
+                <img src="Images/Alien/AlienAngle.png" alt="Main Side View" class="gallery-image">
+                <img src="Images/Alien/AlienAlt.png" alt="Alt Alien" class="gallery-image">
+            </div>
+            
+            <div class="project-meta">
+                <h3>Project Details</h3>
+                <p class="meta-item"><strong>Year:</strong> 2023</p>
+                <p class="meta-item"><strong>Tools Used:</strong> Blender</p>
+            </div>
+        </section>
+        
+        <section id="project-beowulf" class="project-detail">
+            <div class="project-detail-header">
+                <button class="back-button" onclick="goBackToHome()">← Back to Home</button>
+                <h1>GV Beowulf</h1>
+            </div>
+            
+            <img src="Images/GVBeowulf/Beowulf-02.png" alt="GV Beowulf" class="project-image" style="width: 100%; height: auto; max-height: 800px; object-fit: contain;">
+            
+            <div class="project-description">
+                <h2>Project Overview</h2>
+                <p>GV Beowulf is a concept design for the fourth generation of a smart helmet line. The project blends sleek, futuristic aesthetics with functional technology, imagining a product that could realistically exist in the near future.</p>
+                
+                <p>The helmet was designed alongside mock advertising materials to simulate a commercial launch, emphasizing both visual appeal and technical innovation.</p>
+				
+            </div>
+            
+            <div class="project-gallery">
+                <img src="Images/GVBeowulf/BeowulfAlt.png" alt="Alt Design" class="gallery-image">
+                <img src="Images/GVBeowulf/Process.png" alt="Models" class="gallery-image">
+                <img src="Images/GVBeowulf/Sketches.png" alt="Sketches" class="gallery-image">
+            </div>
+            
+            <div class="project-meta">
+                <h3>Project Details</h3>
+                <p class="meta-item"><strong>Year:</strong> 2024</p>
+                <p class="meta-item"><strong>Tools Used:</strong> Blender, Adobe Photoshop</p>
+            </div>
+        </section>
+        
+        <section id="project-nausea" class="project-detail">
+            <div class="project-detail-header">
+                <button class="back-button" onclick="goBackToHome()">← Back to Home</button>
+                <h1>NAUSEA</h1>
+            </div>
+            
+            <img src="Images/NAUSEA/NAUSEA.png" alt="NAUSEA" class="project-image" style="width: 100%; height: auto; max-height: 800px; object-fit: contain;">
+            
+            <div class="project-description">
+                <h2>Project Overview</h2>
+                <p>NAUSEA is a conceptual poster for a fictional psychological horror film. Drawing on themes of surrealism and body horror, the design uses unsettling imagery and jarring typography to evoke a visceral sense of unease.</p>
+                
+                <p>The poster aims to disturb and intrigue, pulling the viewer in with a visual language that mirrors the mental unraveling portrayed in the film’s narrative.</p>
+				
+            </div>
+                        
+            <div class="project-meta">
+                <h3>Project Details</h3>
+                <p class="meta-item"><strong>Year:</strong> 2024</p>
+                <p class="meta-item"><strong>Tools Used:</strong> Blender, Adobe Illustrator, Adobe Photoshop</p>
+            </div>
+        </section>
+        
+        <section id="project-book" class="project-detail">
+            <div class="project-detail-header">
+                <button class="back-button" onclick="goBackToHome()">← Back to Home</button>
+                <h1>Under the Same Stars</h1>
+            </div>
+            
+            <img src="Images/PictureBook/SpreadMain.png" alt="Main Spread" class="project-image" style="width: 100%; height: auto; max-height: 800px; object-fit: contain;">
+            
+            <div class="project-description">
+                <h2>Project Overview</h2>
+                <p><i>Under the Same Stars</i> is a children’s picture book developed as a final university project. The assignment was to create an illustrated book addressing a social issue, and this piece tackles religious conflict through a lens of cultural empathy.</p>
+				
+				<p>The story encourages children to embrace diversity and understand different belief systems, using gentle illustrations and accessible storytelling to promote acceptance and curiosity.</p>
+                
+            </div>
+            
+            <div class="project-gallery">
+                <img src="Images/PictureBook/Spread1.png" alt="Spread1" class="gallery-image">
+                <img src="Images/PictureBook/Spread2.png" alt="Spread2" class="gallery-image">
+                <img src="Images/PictureBook/Process.png" alt="Process" class="gallery-image">
+            </div>
+            
+            <div class="project-meta">
+                <h3>Project Details</h3>
+                <p class="meta-item"><strong>Year:</strong> 2025</p>
+                <p class="meta-item"><strong>Tools Used:</strong> Adobe Photoshop, Adobe InDesign</p>
+            </div>
+        </section>
+        
+        <section id="project-ligneous" class="project-detail">
+            <div class="project-detail-header">
+                <button class="back-button" onclick="goBackToHome()">← Back to Home</button>
+                <h1>Ligneous</h1>
+            </div>
+            
+            <img src="Images/Ligneous/Ligneous1.png" alt="Ligneous" class="project-image" style="width: 100%; height: auto; max-height: 800px; object-fit: contain;">
+            
+            <div class="project-description">
+                <h2>Project Overview</h2>
+                <p>Ligneous is a 3D sculpting project centered on a hyper-realistic wooden head rendered in Blender. The work explores the convergence of human anatomy and natural materials, emphasizing wood’s organic grain and texture.</p>
+                
+                <p>The main design challenge was to preserve anatomical realism while convincingly replicating the physical properties of wood, such as grain direction and surface imperfections, across the contours of the face.</p>
+            </div>
+            
+            <div class="project-gallery">
+                <img src="Images/Ligneous/Ligneous2.png" alt="Full View" class="gallery-image">
+                <img src="Images/Ligneous/Ligneous3.png" alt="Side View" class="gallery-image">
+                <img src="Images/Ligneous/Ligneous4.png" alt="Base Sculpt" class="gallery-image">
+            </div>
+            
+            <div class="project-meta">
+                <h3>Project Details</h3>
+                <p class="meta-item"><strong>Year:</strong> 2023</p>
+                <p class="meta-item"><strong>Tools Used:</strong> Blender, Adobe Photoshop</p>
+            </div>
+        </section>
+        
+        <section id="project-justice" class="project-detail">
+            <div class="project-detail-header">
+                <button class="back-button" onclick="goBackToHome()">← Back to Home</button>
+                <h1>Justice</h1>
+            </div>
+            
+            <img src="Images/Justice/Justice.png" alt="Justice" class="project-image" style="width: 100%; height: auto; max-height: 800px; object-fit: contain;">
+            
+            <div class="project-description">
+                <h2>Project Overview</h2>
+                <p>This monochrome illustration of the <i>Justice</i> tarot card was created for linocut printing. The design reinterprets the traditional symbolism of the card through a contemporary lens while preserving its core iconography.</p>
+                
+                <p>Tailored to the linocut medium, the illustration emphasizes bold linework, strong contrast, and strategic use of negative space to maximize visual impact in print.</p>
+            </div>
+            
+            
+          <div class="project-meta">
+                <h3>Project Details</h3>
+              <p class="meta-item"><strong>Year:</strong> 2025</p>
+              <p class="meta-item"><strong>Tools Used:</strong> Adobe Photoshop, Adobe Illustrator</p>
+            </div>
+        </section>
+		
+        <section id="project-pants" class="project-detail">
+            <div class="project-detail-header">
+                <button class="back-button" onclick="goBackToHome()">← Back to Home</button>
+                <h1>Baggy Jeans Concept</h1>
+            </div>
+            
+            <img src="Images/Pants/Pants.png" alt="Justice" class="project-image" style="width: 100%; height: auto; max-height: 800px; object-fit: contain;">
+            
+            <div class="project-description">
+                <h2>Project Overview</h2>
+                <p>This project involved designing and producing a pair of baggy jeans entirely from scratch, serving as a personal study in fashion design and garment construction.</p>
+                
+                <p>Beginning with body measurements, the pattern was created in Clo3D and simulated before being rendered in Blender using custom textures developed in Adobe Photoshop. The design was then brought into the physical world by translating it onto fabric, cutting, and sewing it into a wearable prototype.</p>
+            </div>
+            
+            <div class="project-gallery">
+                <img src="Images/Pants/Front.png" alt="Front View" class="gallery-image">
+                <img src="Images/Pants/Side.png" alt="Side View" class="gallery-image">
+                <img src="Images/Pants/Back.png" alt="Back View" class="gallery-image">
+            </div>
+            
+            <div class="project-meta">
+                <h3>Project Details</h3>
+                <p class="meta-item"><strong>Year:</strong> 2024</p>
+                <p class="meta-item"><strong>Tools Used:</strong> Clo3D, Blender, Adobe Photoshop</p>
             </div>
         </section>
     </main>
     
     <footer>
-        <p>&copy; 2025 Alejandro Padilla. All rights reserved.</p>
-    </footer>
+      <p>&copy; 2025 Alejandro Padilla. All rights reserved.</p>
+</footer>
     
-    <script>
+<script>
         function openTab(tabId, element) {
-            // Hide all sections
             const sections = document.querySelectorAll('section');
             sections.forEach(section => {
                 section.classList.remove('active');
             });
             
-            // Remove active class from all nav links
             const navLinks = document.querySelectorAll('.nav-links a');
             navLinks.forEach(link => {
                 link.classList.remove('active');
             });
             
-            // Show the selected section
             document.getElementById(tabId).classList.add('active');
             
-            // Add active class to the clicked nav link
             element.classList.add('active');
             
-            // Close mobile menu if open
             document.querySelector('.nav-links').classList.remove('active');
         }
         
         function toggleMenu() {
             document.querySelector('.nav-links').classList.toggle('active');
         }
+        
+        function openProjectDetail(projectId) {
+            const mainSections = document.querySelectorAll('main > section:not(.project-detail)');
+            mainSections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            const projectSections = document.querySelectorAll('.project-detail');
+            projectSections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            document.getElementById(projectId).classList.add('active');
+            
+            window.scrollTo(0, 0);
+        }
+        
+        function goBackToProjects() {
+            const projectSections = document.querySelectorAll('.project-detail');
+            projectSections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            document.getElementById('projects').classList.add('active');
+            
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            document.querySelector('a[href="#projects"]').classList.add('active');
+            
+            window.scrollTo(0, 0);
+        }
+		
+	function openLightbox(imageSrc, altText) {
+		const lightbox = document.getElementById('image-lightbox');
+		const lightboxImg = document.getElementById('lightbox-img');
+
+		lightboxImg.src = imageSrc;
+		lightboxImg.alt = altText || 'Enlarged view';
+
+		lightbox.classList.add('active');
+		document.body.style.overflow = 'hidden'; 
+		}
+
+		function closeLightbox() {
+			const lightbox = document.getElementById('image-lightbox');
+			lightbox.classList.remove('active');
+			document.body.style.overflow = ''; 
+		}
+
+		document.addEventListener('keydown', function(event) {
+			if (event.key === 'Escape') {
+				closeLightbox();
+			}
+		});
+
+		document.addEventListener('DOMContentLoaded', function() {
+			const galleryImages = document.querySelectorAll('.gallery-image');
+			galleryImages.forEach(image => {
+				image.addEventListener('click', function() {
+					openLightbox(this.src, this.alt);
+				});
+				image.style.cursor = 'pointer';
+			});
+		});
+	
+		function goBackToHome() {
+		const projectSections = document.querySelectorAll('.project-detail');
+		projectSections.forEach(section => {
+			section.classList.remove('active');
+		});
+
+		document.getElementById('home').classList.add('active');
+
+		const navLinks = document.querySelectorAll('.nav-links a');
+		navLinks.forEach(link => {
+			link.classList.remove('active');
+		});
+		document.querySelector('a[href="#home"]').classList.add('active');
+
+		window.scrollTo(0, 0);
+}
+
     </script>
+
+<div class="lightbox" id="image-lightbox" onclick="closeLightbox()">
+    <div class="lightbox-content" onclick="event.stopPropagation()">
+        <button class="close-lightbox" onclick="closeLightbox()">×</button>
+        <img src="image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Enlarged view" class="lightbox-image" id="lightbox-img">
+    </div>
+</div>
+
 </body>
 </html>
